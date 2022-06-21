@@ -3,29 +3,26 @@ import { useState, useEffect } from 'react';
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 
-export default function App() {
 
-  const [currentDate, setCurrentDate] = useState('');
+export default function App() {
+  const [date, setDate] = useState(new Date().toLocaleTimeString())
+
+  function Clock(){
+    setDate(new Date().toLocaleTimeString())
+  }
   useEffect(() => {
-    var date = new Date().getDate(); //Current Date
-    var month = new Date().getMonth() + 1; //Current Month
-    var year = new Date().getFullYear(); //Current Year
-    var hours = new Date().getHours(); //Current Hours
-    var min = new Date().getMinutes(); //Current Minutes
-    var sec = new Date().getSeconds(); //Current Seconds
-    setCurrentDate(
-      date + '/' + month + '/' + year 
-      + ' ' + hours + ':' + min + ':' + sec
-    );
-  }, []);
+    setTimeout(()=>{
+        Clock()
+    },1000)
+  });
 
   return (
     <View style={styles.container}>
       <View style={styles.containerMsg}>
-        <Text >  </Text>
+      <Text style={styles.clock}>{date}</Text>
       </View>
       <View style={styles.containerPonto}>
-      <TouchableOpacity style={styles.button} onPress={()=>Alert.alert(currentDate)}>
+      <TouchableOpacity style={styles.button} onPress={()=>Alert.alert(date)}>
         <Text>
           Bater o Ponto
         </Text>
@@ -63,4 +60,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
 
   },
+  clock: {
+    fontWeight:'bold',  
+    backgroundColor:'grey',
+    padding:10,
+    borderRadius:20,
+    fontSize: 50,
+    color: '#000',
+    marginTop: 50,
+  },
+
 });
