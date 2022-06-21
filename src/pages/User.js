@@ -12,7 +12,7 @@ export default function App() {
     <View style={styles.container}>
       <View style={styles.container2}>
       <Text style={styles.label}>Digite seu nome aqui:</Text>
-      <TextInput style={styles.text} placeholder='Usuário' value={user} onChangeText={text=>setNome(text)}></TextInput>
+      <TextInput style={styles.text} placeholder='Usuário' value={user} onChangeText={text=>setUser(text)}></TextInput>
       </View>
       <StatusBar style="auto" />
     </View>
