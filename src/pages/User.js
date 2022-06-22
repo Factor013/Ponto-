@@ -1,18 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function App() {
 
+    const navigation = useNavigation();
     const[user,setUser]=useState("")
-    const mudaUser=()=>{}
+
+    function setTrabalhador(){
+      navigation.navigate("Home",{Trabalhador: user})
+    }
 
 
   return (
     <View style={styles.container}>
       <View style={styles.container2}>
       <Text style={styles.label}>Digite seu nome aqui:</Text>
-      <TextInput style={styles.text} placeholder='Usuário' value={user} onChangeText={text=>setUser(text)}></TextInput>
+      <TextInput style={styles.text} placeholder='Usuário' value={user} onChangeText={text=>setUser(text)} onEndEditing={setTrabalhador}></TextInput>
       </View>
       <StatusBar style="auto" />
     </View>

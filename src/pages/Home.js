@@ -1,11 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState, useEffect } from 'react';
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 
 
-export default function App() {
+export default function App({route}) {
+
+  
+
+  const navigation = useNavigation();
+
+  const trabalhador = route.params?.Trabalhador
+
   const [date, setDate] = useState(new Date().toLocaleTimeString())
+
+  function registro(){
+    navigation.setParams("Dados",{Hora: date, Trabalhador: trabalhador})
+  }
 
   function Clock(){
     setDate(new Date().toLocaleTimeString())
@@ -16,13 +28,14 @@ export default function App() {
     },1000)
   });
 
+
   return (
     <View style={styles.container}>
       <View style={styles.containerMsg}>
       <Text style={styles.clock}>{date}</Text>
       </View>
       <View style={styles.containerPonto}>
-      <TouchableOpacity style={styles.button} onPress={()=>Alert.alert(date)}>
+      <TouchableOpacity style={styles.button} onPress={registro}>
         <Text>
           Bater o Ponto
         </Text>
